@@ -1,0 +1,4 @@
+[
+    { "keys": ["super+alt+a"], "command": "increment"},
+    { "keys": ["super+alt+x"], "command": "decrement"}
+]

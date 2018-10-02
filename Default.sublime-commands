@@ -1,0 +1,10 @@
+[
+    {
+        "caption": "Increment Decrement: increase the number",
+        "command": "increment"
+    },
+    {
+        "caption": "Increment Decrement: decrease the number",
+        "command": "decrement"
+    }
+]
