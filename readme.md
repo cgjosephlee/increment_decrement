@@ -19,7 +19,7 @@ Hit <kbd>cmd</kbd> + <kbd>shift</kbd> + <kbd>p</kbd> and search `increment` or `
 
 ## Contributors
 - [dtao (original author)](https://gist.github.com/dtao/2788978)
-- [halilim (implement searching while nothing selected)](https://gist.github.com/dtao/2788978#gistcomment-790682)
+- [halilim (implement searching while nothing selected)](https://gist.github.com/dtao/2788978#gistcomment-1246653)
 - cgjosephlee
 
 ## License
