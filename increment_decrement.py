@@ -11,13 +11,15 @@ class NumberCommand(sublime_plugin.TextCommand):
                     begin = region.begin()
                     while begin >= 0:
                         if not self.view.substr(begin - 1).isdigit():
+                            if self.view.substr(begin - 1) == '-':
+                                begin -= 1
                             break
-                        begin = begin - 1
+                        begin -= 1
                     end = region.end()
                     while end < self.view.size():
                         if not self.view.substr(end).isdigit():
                             break
-                        end = end + 1
+                        end += 1
                     region = sublime.Region(begin, end)
                 value = int(self.view.substr(region))
                 self.view.replace(edit, region, str(self.op(value)))
