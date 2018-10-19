@@ -57,7 +57,7 @@ class NumberCommand(sublime_plugin.TextCommand):
                         guess_type = 'bool'
                     elif re.match(r'[-]?\d+$', value):
                         guess_type = 'int'
-                    elif re.match(r'\d+\.\d+$', value):
+                    elif re.match(r'[-]?\d+\.\d+$', value):
                         guess_type = 'dec'
                     else:
                         raise ValueError
