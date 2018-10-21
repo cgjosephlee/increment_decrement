@@ -1,5 +1,5 @@
 # Increment Decrement
-Sublime Text plugin to increase/decrease selected values (int, float, roman, bool).
+A Sublime Text plugin to increase/decrease values (integer, float, Roman numerals, boolean) with one keystroke.
 
 ## Features
 Inspired by `C-a` and `C-x` in vim and [nextval](https://www.vim.org/scripts/script.php?script_id=4536).
@@ -11,7 +11,7 @@ Inspired by `C-a` and `C-x` in vim and [nextval](https://www.vim.org/scripts/scr
 | 4.99  | 4.98      | 5.00     |
 | -1.1  | -1.2      | -1.0     |
 | III   | II        | IV       |
-| IX    | VIII      | X        |
+| ix    | viii      | x        |
 | TRUE  | FALSE     | FALSE    |
 | True  | False     | False    |
 | false | true      | true     |

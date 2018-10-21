@@ -5,32 +5,28 @@ import re
 def roman(RomanNum, plus):
     decimalDens = [100, 90, 50, 40, 10, 9, 5, 4, 1]
     romanDens = ["C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"]
+    case_is = 'upper'
+    if RomanNum.islower():
+        case_is = 'lower'
+        RomanNum = RomanNum.upper()
     # convert to decimal
-    if re.match(r'[IVXLC]+', RomanNum):
-        decimalSum = 0
-        # romanLen = len(RomanNum)
-        currentLen = 0
-        while currentLen < len(RomanNum):
-            for R in romanDens:
-                if re.match(R, RomanNum[currentLen:]):
-                    currentLen += len(R)
-                    decimalSum += decimalDens[romanDens.index(R)]
-        # currently not support > 100
-        if decimalSum > 100:
-            raise ValueError
-    else:
+    decimalSum = 0
+    currentLen = 0
+    while currentLen < len(RomanNum):
+        for R in romanDens:
+            if re.match(R, RomanNum[currentLen:]):
+                currentLen += len(R)
+                decimalSum += decimalDens[romanDens.index(R)]
+    # currently not support > 100
+    if decimalSum > 100:
         raise ValueError
     # plus or minus
-    if plus:
-        if decimalSum < 100:
+    if plus and decimalSum < 100:
             decimalSum += 1
-        else:
-            raise ValueError
-    else:
-        if decimalSum > 1:
+    elif not plus and decimalSum > 1:
             decimalSum -= 1
-        else:
-            raise ValueError
+    else:
+        raise ValueError
     # convert to roman
     NewRomanNum = ''
     while decimalSum > 0:
@@ -39,6 +35,8 @@ def roman(RomanNum, plus):
                 decimalSum -= N
                 NewRomanNum += romanDens[decimalDens.index(N)]
                 break
+    if case_is == 'lower':
+        NewRomanNum = NewRomanNum.lower()
     return NewRomanNum
 
 
@@ -90,16 +88,17 @@ class NumberCommand(sublime_plugin.TextCommand):
                         if self.view.substr(region) in ['TRUE', 'True', 'true', 'FALSE', 'False', 'false']:
                             guess_type = 'bool'
                         # roman numeral
-                        elif re.match(r'[IVXLC]+', self.view.substr(region)):
+                        elif re.match(r'[IVXLC]+|[ivxlc]+', self.view.substr(region)):
                             guess_type = 'roman'
                         else:
                             raise ValueError
                     value = self.view.substr(region)
+                # selected region
                 else:
                     value = self.view.substr(region)
                     if value in ['TRUE', 'True', 'true', 'FALSE', 'False', 'false']:
                         guess_type = 'bool'
-                    elif re.match(r'[IVXLC]+', self.view.substr(region)):
+                    elif re.match(r'[IVXLC]+|[ivxlc]+', self.view.substr(region)):
                         guess_type = 'roman'
                     elif re.match(r'[-]?\d+$', value):
                         guess_type = 'int'
