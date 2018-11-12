@@ -16,7 +16,7 @@ Inspired by `C-a` and `C-x` in vim and [nextval](https://www.vim.org/scripts/scr
 | True  | False     | False    |
 | false | true      | true     |
 
-Caveats: Roman numerals > 100 (rarely used) or < 1 (no applicable) are not supported.
+Caveats: Roman numerals > 100 (rarely used) or < 1 (not applicable) are not supported.
 
 ## Installation
 Clone this repo to your package folder `Preferences -> Browse Packages`.
@@ -47,3 +47,6 @@ Hit <kbd>cmd</kbd> + <kbd>shift</kbd> + <kbd>p</kbd> and search `increment` or `
 
 ## License
 MIT
+
+## Links
+- [Inc-Dec-Value](https://github.com/rmaksim/Sublime-Text-2-Inc-Dec-Value): A good and similar package, but unmaintained
