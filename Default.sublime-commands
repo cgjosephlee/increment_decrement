@@ -1,10 +1,12 @@
 [
     {
         "caption": "Increment Decrement: increase the number",
-        "command": "increment"
+        "command": "increment_decreament",
+        "args": {"plus": true}
     },
     {
         "caption": "Increment Decrement: decrease the number",
-        "command": "decrement"
+        "command": "increment_decreament",
+        "args": {"plus": false}
     }
 ]
