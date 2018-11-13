@@ -92,11 +92,16 @@ class IncrementDecreamentCommand(sublime_plugin.TextCommand):
         return str(value)
 
     def interger(self, value, plus):
+        digits = None
+        if value.startswith('0'):
+            digits = len(value)
         value = int(value)
         if plus:
             value += 1
         else:
             value -= 1
+        if digits and value >= 0:
+            value = str(value).zfill(digits)
         return value
 
     def decimal(self, value, plus):
