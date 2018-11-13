@@ -11,6 +11,7 @@ class IncrementDecreamentCommand(sublime_plugin.TextCommand):
         for region in selection:
             try:
                 region, value, guess_type = self.select_region(region)
+                selection.add(region)
                 self.view.replace(edit, region, self.op(value, guess_type, plus))
                 # print(value, str(self.op(value, guess_type)), guess_type)
             except ValueError:
