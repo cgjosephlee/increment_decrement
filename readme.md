@@ -1,4 +1,8 @@
 # Increment Decrement
+[![GitHub license](https://img.shields.io/github/license/cgjosephlee/increment_decrement.svg)](https://github.com/cgjosephlee/increment_decrement/blob/master/LICENSE)
+[![GitHub tag](https://img.shields.io/github/tag/cgjosephlee/increment_decrement.svg)](https://GitHub.com/cgjosephlee/increment_decrement/tags/)
+<!-- [![Package Control total downloads](https://img.shields.io/packagecontrol/dt/SwitchDictionary.svg)](https://packagecontrol.io/packages/SwitchDictionary) -->
+
 A Sublime Text plugin to increase/decrease values (integer, float, Roman numerals, boolean) with one keystroke.
 
 ## Features
@@ -8,8 +12,11 @@ Inspired by `C-a` and `C-x` in vim and [nextval](https://www.vim.org/scripts/scr
 |-------|-----------|----------|
 | 5     | 4         | 6        |
 | -1    | -2        | 0        |
+| 001   | 000       | 002      |
 | 4.99  | 4.98      | 5.00     |
 | -1.1  | -1.2      | -1.0     |
+| .2    | .1        | .3       |
+| 2.    | 1.        | 3.       |
 | III   | II        | IV       |
 | ix    | viii      | x        |
 | TRUE  | FALSE     | FALSE    |
@@ -41,12 +48,12 @@ Tip: Use multi-cursors to select multiple values.
 ### Command palette
 Hit <kbd>cmd</kbd> + <kbd>shift</kbd> + <kbd>p</kbd> and search `increment` or `decrement`.
 
+## Links
+- [Inc-Dec-Value](https://github.com/rmaksim/Sublime-Text-2-Inc-Dec-Value): A good and similar package, but unmaintained
+
 ## Contributors
 - [dtao (original author)](https://gist.github.com/dtao/2788978)
 - [halilim (implement searching while nothing selected)](https://gist.github.com/dtao/2788978#gistcomment-1246653)
 
 ## License
 MIT
-
-## Links
-- [Inc-Dec-Value](https://github.com/rmaksim/Sublime-Text-2-Inc-Dec-Value): A good and similar package, but unmaintained
