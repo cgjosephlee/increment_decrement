@@ -22,7 +22,7 @@ class IncrementDecreamentCommand(sublime_plugin.TextCommand):
         if region.empty():
             begin = end = region.begin()
             guess_type = 'int'
-            if self.view.substr(begin - 1).isdigit():
+            if self.view.substr(begin - 1).isdigit() or self.view.substr(begin - 1) == '.':
                 while begin >= 0:
                     if not self.view.substr(begin - 1).isdigit():
                         # integer
@@ -75,7 +75,7 @@ class IncrementDecreamentCommand(sublime_plugin.TextCommand):
                 guess_type = 'roman'
             elif re.match(r'[-]?\d+$', value):
                 guess_type = 'int'
-            elif re.match(r'[-]?\d+\.\d+$', value):
+            elif re.match(r'[-]?\d+\.\d+$|\.\d+|\d+\.', value):
                 guess_type = 'dec'
             else:
                 raise ValueError
@@ -106,11 +106,21 @@ class IncrementDecreamentCommand(sublime_plugin.TextCommand):
         return value
 
     def decimal(self, value, plus):
-        dec_part = len(value.split('.')[-1])
-        if plus:
-            value = '{:.{dec}f}'.format(float(value) + (10 ** -dec_part), dec=dec_part)
+        int_part = len(value.split('.')[0])
+        dec_part = len(value.split('.')[1])
+        # maybe bullet points
+        if dec_part == 0:
+            value = value.rstrip('.')
+            value = self.interger(value, plus)
+            value = str(value) + '.'
         else:
-            value = '{:.{dec}f}'.format(float(value) - (10 ** -dec_part), dec=dec_part)
+            if plus:
+                value = '{:.{dec}f}'.format(float(value) + (10 ** -dec_part), dec=dec_part)
+            else:
+                value = '{:.{dec}f}'.format(float(value) - (10 ** -dec_part), dec=dec_part)
+            # .3, valid decimals in programming language
+            if int_part == 0:
+                value = value.lstrip('0')
         return value
 
     def boolean(self, value):
