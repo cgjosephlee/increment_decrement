@@ -2,7 +2,7 @@ import sublime
 import sublime_plugin
 import re
 
-class IncrementDecreamentCommand(sublime_plugin.TextCommand):
+class IncrementDecrementCommand(sublime_plugin.TextCommand):
     def is_enabled(self):
         return len(self.view.sel()) > 0
 
