@@ -1,7 +1,7 @@
 # Increment Decrement
 [![GitHub license](https://img.shields.io/github/license/cgjosephlee/increment_decrement.svg)](https://github.com/cgjosephlee/increment_decrement/blob/master/LICENSE)
 [![GitHub tag](https://img.shields.io/github/tag/cgjosephlee/increment_decrement.svg)](https://GitHub.com/cgjosephlee/increment_decrement/tags/)
-<!-- [![Package Control total downloads](https://img.shields.io/packagecontrol/dt/Increment%20Decrement.svg)](https://packagecontrol.io/packages/Increment%20Decrement) -->
+[![Package Control total downloads](https://img.shields.io/packagecontrol/dt/Increment%20Decrement.svg)](https://packagecontrol.io/packages/Increment%20Decrement)
 
 A Sublime Text plugin to increase/decrease values (integer, float, Roman numerals, boolean) with one keystroke.
 
