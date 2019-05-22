@@ -30,6 +30,16 @@ class IncrementDecrementCommand(sublime_plugin.TextCommand):
                             # guess_type = 'int'
                             begin -= 1
                             break
+                        # Binary
+                        elif self.view.substr(begin - 1) == 'b':
+                            begin -= 2
+                            guess_type = 'bin'
+                            break
+                        # Binary
+                        elif self.view.substr(begin - 1) == 'x':
+                            begin -= 2
+                            guess_type = 'hex'
+                            break
                         # decimal
                         elif self.view.substr(begin - 1) == '.':
                             if guess_type == 'dec':  # meet second time, maybe version or IP?
@@ -37,10 +47,6 @@ class IncrementDecrementCommand(sublime_plugin.TextCommand):
                             guess_type = 'dec'
                             begin -= 1
                             continue
-                        # hexadecimal, not implemented
-                        # elif self.view.substr(begin - 1) == 'x':
-                        #     guess_type = 'hex'
-                        #     pass
                         break
                     begin -= 1
                 while end < self.view.size():
@@ -60,6 +66,12 @@ class IncrementDecrementCommand(sublime_plugin.TextCommand):
                 # boolean
                 if self.view.substr(region) in ['TRUE', 'True', 'true', 'FALSE', 'False', 'false']:
                     guess_type = 'bool'
+                # Binary
+                elif re.match(r'0b.', self.view.substr(region)):
+                    guess_type = 'bin'
+                # Hexadecimal
+                elif re.match(r'0x.', self.view.substr(region)):
+                    guess_type = 'hex'
                 # roman numeral
                 elif re.match(r'[IVXLC]+|[ivxlc]+', self.view.substr(region)):
                     guess_type = 'roman'
@@ -77,22 +89,30 @@ class IncrementDecrementCommand(sublime_plugin.TextCommand):
                 guess_type = 'int'
             elif re.match(r'[-]?\d+\.\d+$|\.\d+|\d+\.', value):
                 guess_type = 'dec'
+            elif re.match(r'0b.', self.view.substr(region)):
+                guess_type = 'bin'
+            elif re.match(r'0x.', self.view.substr(region)):
+                guess_type = 'hex'
             else:
                 raise ValueError
         return region, value, guess_type
 
     def op(self, value, guess_type, plus):
         if guess_type == 'int':
-            value = self.interger(value, plus)
+            value = self.integer(value, plus)
         elif guess_type == 'dec':
             value = self.decimal(value, plus)
         elif guess_type == 'bool':
             value = self.boolean(value)
         elif guess_type == 'roman':
             value = self.roman(value, plus)
+        elif guess_type == 'bin':
+            value = self.binary(value, plus)
+        elif guess_type == 'hex':
+            value = self.hexadecimal(value, plus)
         return str(value)
 
-    def interger(self, value, plus):
+    def integer(self, value, plus):
         digits = None
         if value.startswith('0'):
             digits = len(value)
@@ -111,7 +131,7 @@ class IncrementDecrementCommand(sublime_plugin.TextCommand):
         # maybe bullet points
         if dec_part == 0:
             value = value.rstrip('.')
-            value = self.interger(value, plus)
+            value = self.integer(value, plus)
             value = str(value) + '.'
         else:
             if plus:
@@ -129,7 +149,7 @@ class IncrementDecrementCommand(sublime_plugin.TextCommand):
         value = convert_bool[value]
         return value
 
-    def roman(slef, RomanNum, plus):
+    def roman(self, RomanNum, plus):
         decimalDens = [100, 90, 50, 40, 10, 9, 5, 4, 1]
         romanDens = ["C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"]
         case_is = 'upper'
@@ -165,3 +185,21 @@ class IncrementDecrementCommand(sublime_plugin.TextCommand):
         if case_is == 'lower':
             NewRomanNum = NewRomanNum.lower()
         return NewRomanNum
+
+    def binary(self, val, plus):
+        val = int(val, 2)
+        if plus:
+            val += 1
+        else:
+            if val != 0:
+                val -= 1
+        return str(bin(val))
+
+    def hexadecimal(self, val, plus):
+        val = int(val, 16)
+        if plus:
+            val += 1
+        else:
+            if val != 0:
+                val -= 1
+        return str(hex(val))
