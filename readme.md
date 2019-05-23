@@ -4,33 +4,26 @@
 [![Package Control total downloads](https://img.shields.io/packagecontrol/dt/Increment%20Decrement.svg)](https://packagecontrol.io/packages/Increment%20Decrement)
 
 A Sublime Text plugin to increase/decrease values (integer, float, Roman numerals, boolean) with one keystroke.
-## Note
-The original author is, https://github.com/cgjosephlee.
-What I've done is added:
-- Hexadecimal number inc/dec
-- Binary number inc/dec
 
 ## Features
 Inspired by `C-a` and `C-x` in vim and [nextval](https://www.vim.org/scripts/script.php?script_id=4536).
 
-| value | decrement | increment|
-|-------|-----------|----------|
-| 5     | 4         | 6        |
-| -1    | -2        | 0        |
-| 001   | 000       | 002      |
-| 4.99  | 4.98      | 5.00     |
-| -1.1  | -1.2      | -1.0     |
-| .2    | .1        | .3       |
-| 2.    | 1.        | 3.       |
-| III   | II        | IV       |
-| ix    | viii      | x        |
-| TRUE  | FALSE     | FALSE    |
-| True  | False     | False    |
-| false | true      | true     |
-|New!:	|			|			|
-|0xe	| 0xd		| 0xf		|
-|0b1010	| 0b1001		| 0b1011|
-
+| value  | decrement | increment |
+|--------|-----------|-----------|
+| 5      | 4         | 6         |
+| -1     | -2        | 0         |
+| 001    | 000       | 002       |
+| 4.99   | 4.98      | 5.00      |
+| -1.1   | -1.2      | -1.0      |
+| .2     | .1        | .3        |
+| 2.     | 1.        | 3.        |
+| III    | II        | IV        |
+| ix     | viii      | x         |
+| TRUE   | FALSE     | FALSE     |
+| True   | False     | False     |
+| false  | true      | true      |
+| 0xe    | 0xd       | 0xf       |
+| 0b1010 | 0b1001    | 0b1011    |
 
 Caveats: Roman numerals > 100 (rarely used) or < 1 (not applicable) are not supported.
 
@@ -65,6 +58,7 @@ Hit <kbd>cmd</kbd> + <kbd>shift</kbd> + <kbd>p</kbd> and search `increment` or `
 ## Contributors
 - [dtao (original author)](https://gist.github.com/dtao/2788978)
 - [halilim (implement searching while nothing selected)](https://gist.github.com/dtao/2788978#gistcomment-1246653)
+- [vdvr (implement binary and hexadecimal)](https://github.com/vdvr)
 
 ## License
 MIT

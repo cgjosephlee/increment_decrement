@@ -30,12 +30,12 @@ class IncrementDecrementCommand(sublime_plugin.TextCommand):
                             # guess_type = 'int'
                             begin -= 1
                             break
-                        # Binary
+                        # binary
                         elif self.view.substr(begin - 1) == 'b':
                             begin -= 2
                             guess_type = 'bin'
                             break
-                        # Binary
+                        # hexadecimal
                         elif self.view.substr(begin - 1) == 'x':
                             begin -= 2
                             guess_type = 'hex'
