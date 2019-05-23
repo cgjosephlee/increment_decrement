@@ -4,6 +4,11 @@
 [![Package Control total downloads](https://img.shields.io/packagecontrol/dt/Increment%20Decrement.svg)](https://packagecontrol.io/packages/Increment%20Decrement)
 
 A Sublime Text plugin to increase/decrease values (integer, float, Roman numerals, boolean) with one keystroke.
+## Note
+The original author is, https://github.com/cgjosephlee.
+What I've done is added:
+- Hexadecimal number inc/dec
+- Binary number inc/dec
 
 ## Features
 Inspired by `C-a` and `C-x` in vim and [nextval](https://www.vim.org/scripts/script.php?script_id=4536).
@@ -22,6 +27,10 @@ Inspired by `C-a` and `C-x` in vim and [nextval](https://www.vim.org/scripts/scr
 | TRUE  | FALSE     | FALSE    |
 | True  | False     | False    |
 | false | true      | true     |
+|New!:	|			|			|
+|0xe	| 0xd		| 0xf		|
+|0b1010	| 0b1001		| 0b1011|
+
 
 Caveats: Roman numerals > 100 (rarely used) or < 1 (not applicable) are not supported.
 
