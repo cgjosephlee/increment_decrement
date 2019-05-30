@@ -9,6 +9,7 @@ A Sublime Text plugin to increase/decrease values (integer, float, Roman numeral
 Inspired by `C-a` and `C-x` in vim and [nextval](https://www.vim.org/scripts/script.php?script_id=4536).
 
 Integers and decimals:
+
 | value  | decrement | increment |
 |--------|-----------|-----------|
 | 5      | 4         | 6         |
@@ -20,21 +21,24 @@ Integers and decimals:
 | 2.     | 1.        | 3.        |
 
 Binary and hexadecimal:
+
 | value  | decrement | increment |
 |--------|-----------|-----------|
 | 0xe    | 0xd       | 0xf       |
 | 0b1010 | 0b1001    | 0b1011    |
 
-Roman numerals:
-*Cases are auto handled.*
+Roman numerals:\
+*Cases are auto handled.*\
 *Caveats: Roman numerals > 100 (rarely used) or < 1 (not applicable) are not supported.*
+
 | value  | decrement | increment |
 |--------|-----------|-----------|
 | III    | II        | IV        |
 | ix     | viii      | x         |
 
-Booleans:
+Booleans:\
 *Cases are auto handled.*
+
 | value  | decrement | increment |
 |--------|-----------|-----------|
 | TRUE   | FALSE     | FALSE     |
