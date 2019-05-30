@@ -64,12 +64,12 @@ class IncrementDecrementCommand(sublime_plugin.TextCommand):
             elif self.view.substr(begin - 1).isalpha():
                 region = self.view.word(region)
                 # boolean
-                if self.view.substr(region) in ['TRUE', 'True', 'true', 'FALSE', 'False', 'false']:
+                if self.view.substr(region) in self._boolean_matches():
                     guess_type = 'bool'
-                # Binary
+                # binary
                 elif re.match(r'0b.', self.view.substr(region)):
                     guess_type = 'bin'
-                # Hexadecimal
+                # hexadecimal
                 elif re.match(r'0x.', self.view.substr(region)):
                     guess_type = 'hex'
                 # roman numeral
@@ -81,7 +81,7 @@ class IncrementDecrementCommand(sublime_plugin.TextCommand):
         # User selected region
         else:
             value = self.view.substr(region)
-            if value in ['TRUE', 'True', 'true', 'FALSE', 'False', 'false']:
+            if value in self._boolean_matches():
                 guess_type = 'bool'
             elif re.match(r'[IVXLC]+|[ivxlc]+', self.view.substr(region)):
                 guess_type = 'roman'
@@ -143,11 +143,32 @@ class IncrementDecrementCommand(sublime_plugin.TextCommand):
                 value = value.lstrip('0')
         return value
 
+    def _boolean_avail_values(self):
+        # upper case only, case is handled automatically
+        # two converse values in an item
+        return [['TRUE', 'FALSE'], ['YES', 'NO']]
+
+    def _boolean_matches(self):
+        flatten = []
+        for i in self._boolean_avail_values():
+            for j in i:
+                flatten.extend((j.upper(), j.lower(), j.capitalize()))
+        return flatten
+
+    def _boolean_dict(self):
+        convert_dict = {}
+        for i in self._boolean_avail_values():
+            convert_dict[i[0].upper()] = i[1].upper()
+            convert_dict[i[0].lower()] = i[1].lower()
+            convert_dict[i[0].capitalize()] = i[1].capitalize()
+            convert_dict[i[1].upper()] = i[0].upper()
+            convert_dict[i[1].lower()] = i[0].lower()
+            convert_dict[i[1].capitalize()] = i[0].capitalize()
+        return convert_dict
+
     def boolean(self, value):
-        convert_bool = {'TRUE': 'FALSE', 'True': 'False', 'true': 'false',
-                        'FALSE': 'TRUE', 'False': 'True', 'false': 'true'}
-        value = convert_bool[value]
-        return value
+        # ValueError is raised if key is not valid
+        return self._boolean_dict()[value]
 
     def roman(self, RomanNum, plus):
         decimalDens = [100, 90, 50, 40, 10, 9, 5, 4, 1]
