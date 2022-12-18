@@ -67,13 +67,13 @@ class IncrementDecrementCommand(sublime_plugin.TextCommand):
                 if self.view.substr(region) in self._boolean_matches():
                     guess_type = 'bool'
                 # binary
-                elif re.match(r'0b.', self.view.substr(region)):
+                elif re.match(r'0b[01]', self.view.substr(region)):
                     guess_type = 'bin'
                 # hexadecimal
-                elif re.match(r'0x.', self.view.substr(region)):
+                elif re.match(r'0x[0-9a-fA-F]', self.view.substr(region)):
                     guess_type = 'hex'
                 # roman numeral
-                elif re.match(r'[IVXLC]+|[ivxlc]+', self.view.substr(region)):
+                elif re.match(r'([IVXLC]+|[ivxlc]+)$', self.view.substr(region)):
                     guess_type = 'roman'
                 else:
                     raise ValueError
@@ -83,15 +83,15 @@ class IncrementDecrementCommand(sublime_plugin.TextCommand):
             value = self.view.substr(region)
             if value in self._boolean_matches():
                 guess_type = 'bool'
-            elif re.match(r'[IVXLC]+|[ivxlc]+', self.view.substr(region)):
+            elif re.match(r'([IVXLC]+|[ivxlc]+)$', self.view.substr(region)):
                 guess_type = 'roman'
             elif re.match(r'[-]?\d+$', value):
                 guess_type = 'int'
-            elif re.match(r'[-]?\d+\.\d+$|\.\d+|\d+\.', value):
+            elif re.match(r'[-]?(\d+\.\d+|\.\d+|\d+\.)$', value):
                 guess_type = 'dec'
-            elif re.match(r'0b.', self.view.substr(region)):
+            elif re.match(r'0b[01]', self.view.substr(region)):
                 guess_type = 'bin'
-            elif re.match(r'0x.', self.view.substr(region)):
+            elif re.match(r'0x[0-9a-fA-F]', self.view.substr(region)):
                 guess_type = 'hex'
             else:
                 raise ValueError
