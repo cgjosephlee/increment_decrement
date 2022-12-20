@@ -71,12 +71,8 @@ Tip: Use multi-cursors to select multiple values.
 Hit <kbd>cmd</kbd> + <kbd>shift</kbd> + <kbd>p</kbd> and search `increment` or `decrement`.
 
 ## Links
+- [Where we started](https://gist.github.com/dtao/2788978)
 - [Inc-Dec-Value](https://github.com/rmaksim/Sublime-Text-2-Inc-Dec-Value): A good and similar package, but unmaintained.
-
-## Contributors
-- [dtao (original author)](https://gist.github.com/dtao/2788978)
-- [halilim (implement searching while nothing selected)](https://gist.github.com/dtao/2788978#gistcomment-1246653)
-- [vdvr (implement binary and hexadecimal)](https://github.com/vdvr)
 
 ## License
 MIT
